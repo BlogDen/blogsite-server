@@ -16,8 +16,8 @@ const URI = 'mongodb+srv://greenteabag:NZ8OKq4Kn3sUxMgw@green.khp1qxy.mongodb.ne
 
 mongoose.connect(URI)
     .then(() => {
-        app.listen(8000, () => {
-            console.log('Connected to DB & Server running on port 8000');
+        app.listen(process.env.PORT, () => {
+            console.log('Connected to DB & Server running on port ', process.env.PORT);
         })
     })
     .catch((err) => {
