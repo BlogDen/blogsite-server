@@ -4,7 +4,6 @@ const fs = require("fs")
 
 const getAllBlogs = async (req, res) => {
     try {
-        // const user_id = req.user._id;
         const Blogs = await Blog.find().sort({ createdAt: -1 }).limit(5)
         res.status(200).json({
             Blogs: Blogs
@@ -37,11 +36,12 @@ const createBlog = async (req, res) => {
     try {
         const { title, body } = req.body;
         const user_id = req.user._id;
+        const user_email = req.user.email;
         const img = {
             data: fs.readFileSync("uploads/" + req.file.filename),
             contentType: "image/png"
         }
-        const blog = await Blog.create({ title: title, body: body, img: img, user_id: user_id })
+        const blog = await Blog.create({ title: title, body: body, img: img, user_id: user_id, user_email: user_email })
 
         res.status(200).json({
             blog: blog

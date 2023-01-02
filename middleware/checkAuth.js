@@ -19,7 +19,7 @@ const checkAuth = async (req, res, next) => {
     try {
         const { id } = jwt.verify(token, process.env.SECRET)
 
-        req.user = await User.findOne({ _id: id }).select('_id')
+        req.user = await User.findOne({ _id: id }).select('_id email')
 
         next();
     }
