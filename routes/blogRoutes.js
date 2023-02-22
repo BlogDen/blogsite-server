@@ -16,11 +16,13 @@ const upload = multer({ storage: storage })
 
 const router = express.Router();
 
-router.use(checkAuth)
+
 
 //Get User blogs
 // router.get('/', getUserBlogs)
 router.get('/', getAllBlogs)
+
+router.use(checkAuth)
 
 
 //Get a particular users own blogs

@@ -2,8 +2,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 const checkAuth = async (req, res, next) => {
-
-
     //first check if token exists at all
     const { authorization } = req.headers;
 
