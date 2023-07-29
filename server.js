@@ -12,7 +12,8 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-const URI = 'mongodb+srv://greenteabag:NZ8OKq4Kn3sUxMgw@green.khp1qxy.mongodb.net/blogs?retryWrites=true&w=majority'
+const URI = 'mongodb+srv://greenteabag:7OUql4sK54bgsszq@green.khp1qxy.mongodb.net/blogs?retryWrites=true&w=majority'
+//possible new password - 7OUql4sK54bgsszq
 
 mongoose.connect(URI)
     .then(() => {

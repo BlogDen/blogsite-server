@@ -6,7 +6,6 @@ const createToken = (id) => {
     return token;
 }
 
-
 const signupUser = async (req, res) => {
     try {
         const { email, password } = req.body;
