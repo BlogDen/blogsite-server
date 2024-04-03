@@ -7,7 +7,7 @@ const cors = require("cors");
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express();
+const app = express()
 
 app.use(express.json())
 app.use(cors())
@@ -27,5 +27,5 @@ mongoose.connect(URI)
 
 
 app.use('/api/blogs', blogRouter);
-app.use('/api/users', userRouter);
+app.use('/api/users', userRouter)
 

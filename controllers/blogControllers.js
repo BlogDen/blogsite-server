@@ -34,15 +34,16 @@ const getUserBlogs = async (req, res) => {
 
 const createBlog = async (req, res) => {
     try {
-        const { title, body } = req.body;
+        const { title, body, description } = req.body;
         const user_id = req.user._id;
         const user_email = req.user.email;
         const img = {
             data: fs.readFileSync("uploads/" + req.file.filename),
             contentType: "image/png"
         }
-        const blog = await Blog.create({ title: title, body: body, img: img, user_id: user_id, user_email: user_email })
+        const blog = await Blog.create({ title: title, description: description, body: body, img: img, user_id: user_id, user_email: user_email })
 
+        // console.log(blog)
         res.status(200).json({
             blog: blog
         })
@@ -72,5 +73,21 @@ const getBlog = async (req, res) => {
     }
 }
 
-module.exports = { getBlog, getUserBlogs, createBlog, getAllBlogs }
+
+const deleteBlog = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const blog = await Blog.findByIdAndDelete(id);
+        if (!blog) {
+            return res.status(404).json({ error: 'Blog not found' });
+        }
+        res.status(200).json({ message: 'Blog deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+
+module.exports = { getBlog, getUserBlogs, createBlog, getAllBlogs, deleteBlog }
 

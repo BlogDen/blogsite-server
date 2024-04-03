@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBlogs, getUserBlogs, createBlog, getBlog } = require('../controllers/blogControllers')
+const { getAllBlogs, getUserBlogs, createBlog, getBlog, deleteBlog } = require('../controllers/blogControllers')
 const multer = require("multer");
 const { checkAuth } = require("../middleware/checkAuth");
 
@@ -36,5 +36,7 @@ router.post('/', upload.single('testImage'), createBlog)
 
 //Get a single Blog
 router.get('/:id', getBlog);
+
+router.delete('/:id', deleteBlog);
 
 module.exports = router
