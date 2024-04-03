@@ -77,7 +77,12 @@ const getBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
     try {
         const { id } = req.params;
-        const blog = await Blog.findByIdAndDelete(id);
+        // const blog = await Blog.findByIdAndDelete(id);
+
+        const blog = await Blog.findOneAndDelete({ _id: id });
+
+        // res.status(200).json(workout);
+
         if (!blog) {
             return res.status(404).json({ error: 'Blog not found' });
         }
